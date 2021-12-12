@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="Back">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>My Personal List</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>
+      My Drivers
+    </ion-list-header>
+
+    <ion-item lines="inset" *ngFor="let data of Data">
+      <ion-label>
+        <h5>{{data.givenName}}</h5>
+        <p>{{data.familyName}}</p>
+      </ion-label>
+      <ion-label>
+        <h5>Comment:</h5>
+        <p>{{data.comment}}</p>
+      </ion-label>
+      <div class="item-note" item-end>
+        <ion-icon name="create" style="zoom:2.0" [routerLink]="['/driver-detail', data]"></ion-icon>        
+        <ion-icon name="trash" style="zoom:2.0" (click)="deleteSong(data.id)"></ion-icon>
+      </div>
+    </ion-item>
+  </ion-list>
+
+
+  <ion-searchbar [(ngModel)]="searchTerm" 
+  (ionChange)="searchChanged($event)" placeholder="Search Driver...">
+  </ion-searchbar>
+
+  <ion-list>
+    <ion-item button *ngFor="let item of (results | async)" [routerLink]="['/driver-detail', item]">
+    
+
+      <ion-label text-wrap>
+        <h3>{{item.givenName}}</h3>
+        <h4><b>Release date:</b> {{item.dateOfBirth}}</h4>
+      </ion-label>
+
+    </ion-item>
+  </ion-list>
+</ion-content>

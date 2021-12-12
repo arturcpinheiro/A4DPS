@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +9,14 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  
+  constructor(private router: Router) {}
+
+  toAllDriversPage(){
+    this.router.navigate(['/my-list']);
+  }
+  toMyListPage(){    
+    this.router.navigate(['/full-driver-list']);
+  }
 
 }

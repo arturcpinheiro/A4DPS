@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="Back">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>{{this.driver.givenName}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        Do you Want to add?
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form *ngIf="hasId" [formGroup]="mainForm" (ngSubmit)="updateData()">
+        <div class="form-group">
+          <ion-item>
+            <ion-label for="title">Full Name: {{this.driver.givenName}} {{this.driver.familyName}}</ion-label>            
+          </ion-item>
+          <ion-item>
+            <ion-label for="title">Date of Birth: {{this.driver.dateOfBirth}}</ion-label>            
+          </ion-item>
+          <ion-item>
+            <ion-label (click)="redirect()">Bibliography: {{this.mainForm.value.urlText}}</ion-label>            
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating" for="title">Comment:</ion-label>
+            <ion-input formControlName="comment" type="text" ></ion-input> 
+          </ion-item>     
+          <div class="ion-margin-vertical ion-text-right">
+            <ion-button  (click)="results()" >Results</ion-button> 
+            <ion-button  type="submit" id="btn-confirm">Update</ion-button>                        
+          </div>
+        </div>
+      </form>
+
+      <form *ngIf="!hasId" [formGroup]="mainForm" (ngSubmit)="storeData()">
+        <div class="form-group">
+          <ion-item>
+            <ion-label for="title">Full Name: {{this.driver.givenName}} {{this.driver.familyName}}</ion-label>            
+          </ion-item>
+          <ion-item>
+            <ion-label for="title">Date of Birth: {{this.driver.dateOfBirth}}</ion-label>            
+          </ion-item>
+          <ion-item>
+            <ion-label (click)="redirect()">Bibliography: {{this.mainForm.value.urlText}}</ion-label>            
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating" for="title">Comment:</ion-label>            
+            <ion-input formControlName="comment" type="text" ></ion-input> 
+          </ion-item>        
+          <div class="ion-margin-vertical ion-text-right">
+            <ion-button  (click)="results()" >Results</ion-button>             
+            <ion-button  type="submit" id="btn-confirm">Add</ion-button>             
+          </div>
+        </div>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

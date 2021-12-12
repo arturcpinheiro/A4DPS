@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="Back">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>driverResult</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item button *ngFor="let item of (DriverList | async)"    >
+      <ion-label text-wrap>
+        <ion-item><h3><b>Circuit:</b> {{item.Circuit.circuitName}}</h3>  </ion-item>
+        <h3><b>Season:</b> {{item.season}}</h3>
+        <h4><b>Date:</b> {{item.date}}</h4>
+        <h4><b>Position:</b> {{item.Results[0].position}}</h4>
+      </ion-label>
+
+    </ion-item>
+  </ion-list>
+</ion-content>
